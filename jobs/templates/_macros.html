@@ -28,3 +28,16 @@
     {% endfor %}
 </div>
 {% endmacro %}
+
+{% macro trading_hours (marketdata) %}
+<table>
+    {% for x in marketdata %}
+    <tr>
+        <td>{{ x.name }}</td>
+        <td>{{ x.timezone }}</td>
+        <td>{{ x.trading_hours }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+{% endmacro %}
