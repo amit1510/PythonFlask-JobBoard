@@ -1,12 +1,11 @@
 import sqlite3
 import datetime
-import json
-from json2html import json2html
 from flask import Flask, render_template, g, request, redirect, url_for
 
 PATH = 'db/jobs.sqlite'
 
 app = Flask(__name__)
+
 
 def open_connection():
     connection = getattr(g, '_connection', None)
@@ -79,10 +78,3 @@ def review(employer_id):
 
     return render_template('review.html', employer_id=employer_id)
 
-
-@app.route('/clocks')
-def clocks():
-    with open('marketdata/exchanges.json') as f:
-        data = json.load(f)
-    json2html.convert(json=data, table_attributes="id=\"info-table\" class=\"table table-bordered table-hover\"")
-    return render_template('clocks.html', data=data)
